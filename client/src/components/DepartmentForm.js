@@ -24,12 +24,12 @@ handleSubmit = (e) => {
   const department = { ...this.state };
   const { id } = this.props.match.params;
   if (id) {
-    axios.put(`/api/department/${id}`, department )
+    axios.put(`/api/departments/${id}`, department )
       .then( res => {
-        this.props.history.push(`/department/${id}`)
+        this.props.history.push(`/departments/${id}`)
       })
   } else {
-    axios.post("/api/department", department)
+    axios.post("/api/departments", department)
       .then( res => {
         this.props.history.push("/departments")
       })
