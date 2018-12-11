@@ -3,7 +3,9 @@ import axios from "axios";
 import { Link, } from "react-router-dom";
 
 class Departments extends React.Component {
-  state = { departments: [], };
+  state = { 
+    departments: [], 
+  };
 
   componentDidMount() {
     axios.get('/api/departments')
@@ -17,7 +19,7 @@ class Departments extends React.Component {
 }
   renderDepartments = () => {
     return this.state.departments.map( p => (
-      <Link to={ `/departments/${p.id}`} key={p.id}>
+      <Link to={ `/departments/${p.id}/items`} key={p.id}>
       <li >{p.name}</li>
       </Link>
     ));
@@ -33,6 +35,7 @@ class Departments extends React.Component {
         <ul>
           { this.renderDepartments() }
         </ul>
+        <h1></h1>
       </div>
     )
   }

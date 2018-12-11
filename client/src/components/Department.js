@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, } from "react-router-dom";
 
 class Department extends React.Component {
-  state = { department: {}, };
+  state = { department: {}, items: [] };
 
   componentDidUpdate () {
     console.log (this.state)
@@ -13,7 +13,7 @@ class Department extends React.Component {
     const { id, } = this.props.match.params;
     axios.get(`/api/departments/${id}`)
       .then( res => {
-        this.setState({ department: res.data, });
+        this.setState({ department: res.data });
       })
   }
 
@@ -35,6 +35,7 @@ class Department extends React.Component {
         <button>Edit</button>
       </Link>
       <button onClick={this.handleDelete}>Delete</button>
+      // button for show items
     </div>
   )
 }
