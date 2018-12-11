@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
-import { Button } from "semantic-ui-react";
+import { Button, Segment } from "semantic-ui-react";
 
 class Items extends React.Component {
   state = { 
@@ -25,8 +25,13 @@ class Items extends React.Component {
 }
   renderItems = () => {
     return this.state.items.map( p => (
-      <ul>  
-        <li key={p.id}> {p.name} {p.description} {p.price}</li>
+      <ul key={p.id}> 
+      <br/>
+      <Segment>
+      <h2>{p.name}</h2>
+      <h3>{p.description}</h3>
+      <h3>${p.price}</h3>
+        </Segment>
         </ul>
       
     ));
