@@ -5,21 +5,55 @@ class DepartmentForm extends React.Component {
   state = { name: "", };
 
 componentDidMount() {
-  const {id} = 
+  const {id} = this.props.match.params;
+  if (id)
+    axios.get(`/api/departments/${id}`)
+      .then( res => {
+        const { name } = res.data;
+        this.setState({ name });
+      })
+}
+
+handleChange = (e) => {
+  const { target: { name, value, } } = e;
+  this.setState({ [name]: value, });
+}
+
+handleSubmit = (e) => {
+  e.preventDefault();
+  const department = { ...this.state };
+  const { id } = this.props.match.params;
+  if (id) {
+    axios.put(`/api/department/${id}`, department )
+      .then( res => {
+        this.props.history.push(`/department/${id}`)
+      })
+  } else {
+    axios.post("/api/department", department)
+      .then( res => {
+        this.props.history.push("/departments")
+      })
+  }
+}
+
+render() {
+  const { name, } = this.state;
+  return (
+    <form onSubmit={this.handleSubmit}>
+      <input
+        name="name"
+        placeholder="Name"
+        value={name}
+        onChange={this.handleChange}
+        required
+      />
+      <button>Submit</button>
+    </form>
+  )
+}
 }
 
 
-
-  componentDidMount() {
-    // const { match: { params: { id } } } = this.props;
-    const { id } = this.props.match.params;
-    if (id)
-      axios.get(`/api/products/${id}`)
-        .then( res => {
-          const { name, description, price, department, } = res.data;
-          this.setState({ name, description, price, department, });
-        })
-  }
 
 
 

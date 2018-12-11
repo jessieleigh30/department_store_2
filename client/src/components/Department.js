@@ -30,8 +30,8 @@ class Department extends React.Component {
 
   return (
     <div>
-      <h1>{ name }</h1>
-      <Link to={`/department/${id}/edit`}>
+      <h1>{name}</h1>
+      <Link to={`/departments/${id}/edit`}>
         <button>Edit</button>
       </Link>
       <button onClick={this.handleDelete}>Delete</button>
