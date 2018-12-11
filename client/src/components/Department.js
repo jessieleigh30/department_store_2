@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
+import { Segment, Button } from 'semantic-ui-react';
 
 class Department extends React.Component {
   state = { department: {}, items: [] };
@@ -32,10 +33,10 @@ class Department extends React.Component {
     <div>
       <h1>{name}</h1>
       <Link to={`/departments/${id}/edit`}>
-        <button>Edit</button>
+        <Button>Edit</Button>
       </Link>
-      <button onClick={this.handleDelete}>Delete</button>
-      // button for show items
+      <Button onClick={this.handleDelete}>Delete</Button>
+      
     </div>
   )
 }

@@ -8,6 +8,8 @@ import Departments from "./components/Departments";
 import Department from "./components/Department";
 import DepartmentForm from "./components/DepartmentForm";
 import Items from "./components/Items";
+import { Header, Button, Segment, Card, Icon } from 'semantic-ui-react';
+
 
 const App = () => (
   <Fragment>

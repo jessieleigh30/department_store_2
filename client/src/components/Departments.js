@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
+import { Segment, Button } from 'semantic-ui-react';
 
 class Departments extends React.Component {
   state = { 
@@ -20,7 +21,8 @@ class Departments extends React.Component {
   renderDepartments = () => {
     return this.state.departments.map( p => (
       <Link to={ `/departments/${p.id}/items`} key={p.id}>
-      <li >{p.name}</li>
+      <br />
+      <Segment>{p.name}</Segment>
       </Link>
     ));
   }
@@ -30,12 +32,11 @@ class Departments extends React.Component {
       <div>
         <br />
         <Link to="/departments/new">
-          <button>New Department</button>
+          <Button> New Department</Button>
         </Link>
         <ul>
           { this.renderDepartments() }
         </ul>
-        <h1></h1>
       </div>
     )
   }

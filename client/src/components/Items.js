@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 
 class Items extends React.Component {
   state = { 
@@ -47,7 +48,7 @@ class Items extends React.Component {
       <div>
         <br />
         <Link to="/items/new">
-          <button>New Items</button>
+          <Button>New Items</Button>
         </Link>
         <h1> {departmentName} </h1>
         <ul>

@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import { Form, Button} from "semantic-ui-react"
 
 class DepartmentForm extends React.Component {
   state = { name: "", };
@@ -47,7 +48,7 @@ render() {
         onChange={this.handleChange}
         required
       />
-      <button>Submit</button>
+      <Button>Submit</Button>
     </form>
   )
 }
