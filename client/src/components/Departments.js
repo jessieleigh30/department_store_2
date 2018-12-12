@@ -22,6 +22,9 @@ class Departments extends React.Component {
     })
 
 }
+// this is where you can put the entire card/segment 
+ // This is what Spencer has on this page, this is where you put the entire
+  //card segment, be sure to import card from semantic
   renderDepartments = () => {
     return this.state.departments.map( p => (
       //add /items to take it to the items show page here

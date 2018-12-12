@@ -20,8 +20,11 @@ class Api::ItemsController < ApplicationController
   end
 
   def update
-    @item.update(item_params)
-    render json: items
+      if @item.update(item_params)
+        render json:@items
+      else
+        render json @item.errors
+      end
   end
 
   def destroy
@@ -36,6 +39,7 @@ class Api::ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+    # @item = Item.find(params[:id]) how it was previously
   end
 
   def set_department

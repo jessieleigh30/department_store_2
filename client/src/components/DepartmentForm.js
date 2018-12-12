@@ -5,6 +5,7 @@ import { Form, Button} from "semantic-ui-react"
 class DepartmentForm extends React.Component {
   state = { name: "", };
 
+  //don't need a component did mount unless we are going to edit//
 componentDidMount() {
   const {id} = this.props.match.params;
   if (id)
@@ -40,16 +41,17 @@ handleSubmit = (e) => {
 render() {
   const { name, } = this.state;
   return (
-    <form onSubmit={this.handleSubmit}>
-      <input
+    <Form onSubmit={this.handleSubmit}>
+      <Form.Input
         name="name"
         placeholder="Name"
+        label="Name of Department"
         value={name}
         onChange={this.handleChange}
         required
       />
-      <Button>Submit</Button>
-    </form>
+      <Form.Button>Submit</Form.Button>
+    </Form>
   )
 }
 }

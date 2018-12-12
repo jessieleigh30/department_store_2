@@ -4,6 +4,8 @@ import { Link, } from "react-router-dom";
 import { Segment, Button } from 'semantic-ui-react';
 import {HeaderText, HeaderTwo} from "../styles/AppStyles.js";
 
+//work on this file, this is where you can renderItems, check Spencers
+
 class Department extends React.Component {
   state = { department: {}, items: [] };
 
@@ -11,11 +13,15 @@ class Department extends React.Component {
     console.log (this.state)
   }
 
+  //need this
   componentDidMount() {
+    //this is grabbing id from props//
     const { id, } = this.props.match.params;
     axios.get(`/api/departments/${id}`)
       .then( res => {
         this.setState({ department: res.data });
+    axios.get(`/api/departments/${id}/items`)
+        .then( res => this.setState ({ items: res.data,}))
       })
   }
 
@@ -26,17 +32,24 @@ class Department extends React.Component {
         this.props.history.push("/departments");
       })
   }
+  
 
+  //you can put them on cards here 
   renderItems = () => {
+    const { id, } = this.props.match.params;
     return this.state.items.map( p => (
       <Link to={ `/departments/${p.id}/items`} key={p.id}>
       < br />
       <Segment>
-        <HeaderTwo>{p.name}</HeaderTwo>
+        {/* //style this// */}
+        <HeaderTwo>{p.name} {p.description} {p.price}</HeaderTwo>
       </Segment>
-      </Link>
+       </Link>
     ))
   }
+
+  
+
 
   // renderDepartments = () => {
   //   return this.state.departments.map( p => (
@@ -51,6 +64,7 @@ class Department extends React.Component {
   // }
 
   render() {
+    //this is getting what we need from state
     const { id, name, } = this.state.department;
     
 
@@ -65,7 +79,9 @@ class Department extends React.Component {
       <Button> See Items </Button>
       </Link>
       
+      {this.renderItems()}
     </div>
+    //this is where you can renderItems so put that in here
   )
 }
 }

@@ -15,8 +15,8 @@ import { Container } from 'semantic-ui-react';
 
 const App = () => (
   <AppContainer>
-    <Container>
-      <Fragment>
+    <Fragment>
+      <Container>
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
@@ -28,13 +28,13 @@ const App = () => (
           <Route exact path="/departments/:id/items" component={Items} />
           <Route component={NoMatch} />
         </Switch>
-      </Fragment>
-    </Container>
+      </Container>
+    </Fragment>
   </AppContainer>
 )
 
 const AppContainer = styled.div`
-  background: linear-gradient(to bottom right, #EEE2DC, #EDC7B7 );
+  background: linear-gradient(to bottom right, #EDC7B7 10%, #EEE2DC );
   height: 300vh;
 `;
 

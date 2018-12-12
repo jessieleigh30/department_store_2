@@ -32,13 +32,13 @@ class Api::DepartmentsController < ApplicationController
 
  private
 
- def set_department
-  @department = Department.find(params[:id])
- end
+  def set_department
+    @department = Department.find(params[:id])
+  end
 
- def department_params
-  params.require(:department).permit(:name)
- end
+  def department_params
+    params.require(:department).permit(:name)
+  end
 
 
 
