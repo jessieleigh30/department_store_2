@@ -1,9 +1,10 @@
 import React from "react";
+import {HeaderText, HeaderTwo} from "../styles/AppStyles.js";
 
 const About = () => (
   <div>
-    <h1>About our Store</h1>
-    <h3>This store is awesome.</h3>
+    <HeaderText large>About our Store</HeaderText>
+    <HeaderTwo>This store is awesome.</HeaderTwo>
   </div>
 );
 
