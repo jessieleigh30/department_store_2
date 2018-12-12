@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
 import { Segment, Button, Card } from 'semantic-ui-react';
-import {HeaderText, HeaderTwo} from "../styles/AppStyles.js";
+import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
 
 
 //work on this file, this is where you can renderItems, check Spencers
@@ -10,8 +10,8 @@ import {HeaderText, HeaderTwo} from "../styles/AppStyles.js";
 class Department extends React.Component {
   state = { department: {}, items: [] };
 
-  componentDidUpdate () {
-    console.log (this.state)
+  componentDidUpdate() {
+    console.log(this.state)
   }
 
   //need this
@@ -19,40 +19,84 @@ class Department extends React.Component {
     //this is grabbing id from props//
     const { id, } = this.props.match.params;
     axios.get(`/api/departments/${id}`)
-      .then( res => {
+      .then(res => {
         this.setState({ department: res.data });
-    axios.get(`/api/departments/${id}/items`)
-        .then( res => this.setState ({ items: res.data,}))
+        axios.get(`/api/departments/${id}/items`)
+          .then(res => this.setState({ items: res.data, }))
       })
   }
+
+  // removeItem = (id) => {
+  //   const remove = window.confirm("Are you sure you want to delete this item?");
+  //   const id = this.props.match.params.id;
+  //   if (remove)
+  //     axios.delete(`/api/departments/${dId}/items/${id}`)
+  //       .then( res => {
+  //         const items = this.state.items.filter( i => {
+  //           if (i.id !== id)
+  //             return i;
+  //         })
+  //         this.setState({ items, });
+  //       })
+  // }
 
   handleDelete = () => {
     const { id, } = this.props.match.params;
     axios.delete(`/api/departments/${id}`)
-      .then( res => {
+      .then(res => {
         this.props.history.push("/departments");
       })
   }
-  
-//create removeItem
+
+  removeItem = (id) => {
+    const remove = window.confirm("Are you sure you want to delete this item?");
+    const dId = this.props.match.params.id;
+    if (remove)
+      axios.delete(`/api/departments/${dId}/items/${id}`)
+        .then(res => {
+          const items = this.state.items.filter(i => {
+            if (i.id !== id)
+              return i;
+          })
+          this.setState({ items, });
+        })
+  }
+  //create removeItem
 
 
   //you can put them on cards here 
   //or break the cards out into the ItemCard
   renderItems = () => {
     const { id, } = this.props.match.params;
-    return this.state.items.map( p => (
-      <Link to={ `/departments/${p.id}/items`} key={p.id}>
-      < br />
-      <Segment>
-        {/* //style this// */}
-        <HeaderTwo>{p.name} {p.description} {p.price}</HeaderTwo>
-      </Segment>
-       </Link>
+    return this.state.items.map(p => (
+
+      <Card>
+        <Card.Content>
+          <Card.Header>
+            <HeaderTwo>{p.name}</HeaderTwo>
+          </Card.Header>
+          <br />
+          <Card.Description>{p.description}</Card.Description>
+          <br />
+          <Card.Content extra>${p.price}</Card.Content>
+        </Card.Content>
+        <Card.Content extra>
+          <div className="ui two buttons">
+            <Button basic color="blue">
+              Edit
+           </Button>
+            <Button onClick={() => this.removeItem(p.id)}>
+              Delete
+            </Button>
+          </div>
+        </Card.Content>
+
+      </Card>
+
     ))
   }
 
-  
+
 
 
   // renderDepartments = () => {
@@ -70,27 +114,27 @@ class Department extends React.Component {
   render() {
     //this is getting what we need from state
     const { id, name, } = this.state.department;
-    
 
-  return (
-    <div>
-      <h1>{name}</h1>
-     <Card.Group>
-      {this.renderItems()}
-      </Card.Group>
-      <br/>
-      <br/>
-      <Link to={`/departments/${id}/edit`}>
-        <Button>Edit</Button>
-      </Link>
-      <Button onClick={this.handleDelete}>Delete</Button>
+
+    return (
+      <div>
+        <HeaderText large>{name}</HeaderText>
+        <Card.Group itemsPerRow={3}>
+          {this.renderItems()}
+        </Card.Group>
+        <br />
+        <br />
+        <Link to={`/departments/${id}/edit`}>
+          <Button>Edit</Button>
+        </Link>
+        <Button onClick={this.handleDelete}>Delete</Button>
         <Link to={`/departments/${id}/items`}>
-      </Link>
-    </div>
-    //this is where you can renderItems so put that in here
-    //need buttons for add and edit 
-  )
-}
+        </Link>
+      </div>
+      //this is where you can renderItems so put that in here
+      //need buttons for add and edit 
+    )
+  }
 }
 
 
