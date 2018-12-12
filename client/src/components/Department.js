@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
-import { Segment, Button } from 'semantic-ui-react';
+import { Segment, Button, Card } from 'semantic-ui-react';
 import {HeaderText, HeaderTwo} from "../styles/AppStyles.js";
+
 
 //work on this file, this is where you can renderItems, check Spencers
 
@@ -33,8 +34,11 @@ class Department extends React.Component {
       })
   }
   
+//create removeItem
+
 
   //you can put them on cards here 
+  //or break the cards out into the ItemCard
   renderItems = () => {
     const { id, } = this.props.match.params;
     return this.state.items.map( p => (
@@ -71,17 +75,20 @@ class Department extends React.Component {
   return (
     <div>
       <h1>{name}</h1>
+     <Card.Group>
+      {this.renderItems()}
+      </Card.Group>
+      <br/>
+      <br/>
       <Link to={`/departments/${id}/edit`}>
         <Button>Edit</Button>
       </Link>
       <Button onClick={this.handleDelete}>Delete</Button>
         <Link to={`/departments/${id}/items`}>
-      <Button> See Items </Button>
       </Link>
-      
-      {this.renderItems()}
     </div>
     //this is where you can renderItems so put that in here
+    //need buttons for add and edit 
   )
 }
 }
