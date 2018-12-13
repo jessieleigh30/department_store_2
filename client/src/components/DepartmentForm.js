@@ -25,11 +25,13 @@ handleSubmit = (e) => {
   e.preventDefault();
   const department = { ...this.state };
   const { id } = this.props.match.params;
+  //if there is an id, this means it needs to edit
   if (id) {
     axios.put(`/api/departments/${id}`, department )
       .then( res => {
         this.props.history.push(`/departments/${id}`)
       })
+      //if it doesn't have an id, render new
   } else {
     axios.post("/api/departments", department)
       .then( res => {

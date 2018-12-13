@@ -10,7 +10,8 @@ import DepartmentForm from "./components/DepartmentForm";
 import Items from "./components/Items";
 import styled from 'styled-components';
 import { Container } from 'semantic-ui-react';
-import ItemForm from "./components/ItemForm"
+import ItemForm from "./components/ItemForm";
+import Item from "./components/Item";
 // import AppContainer from "./styles/AppStyles";
 
 
@@ -24,10 +25,12 @@ const App = () => (
           <Route exact path="/about" component={About} />
           <Route exact path="/departments" component={Departments} />
           <Route exact path="/departments/new" component={DepartmentForm} />
-          <Route exact path="/departments/:id" component={Department} />
           <Route exact path="/departments/:id/edit" component={DepartmentForm} />
+          <Route exact path="/departments/:id" component={Department} />
           <Route exact path="/departments/:id/items" component={Items} />
           <Route exact path="/departments/:id/items/new" component={ItemForm} />
+          <Route exact pathh="/departments/:id/items/:itemId/" component={Item} />
+          <Route exact path="/departments/:id/items/:itemId/edit" component={ItemForm} />
           <Route component={NoMatch} />
         </Switch>
       </Container>
@@ -37,7 +40,7 @@ const App = () => (
 
 const AppContainer = styled.div`
   background: linear-gradient(to bottom right, #EDC7B7 10%, #EEE2DC );
-  height: 300vh;
+  height: 200vh;
 `;
 
 

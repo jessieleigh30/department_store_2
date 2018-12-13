@@ -38,7 +38,7 @@ class Departments extends React.Component {
           </Card.Content>
           <Card.Content textAlign="center">
           <Link to={`/departments/${p.id}`} key={p.id}>
-          <Button color="dark gray">
+          <Button>
             View
           </Button>
           </Link>
@@ -66,6 +66,7 @@ class Departments extends React.Component {
     )
   }
 }
+
 
 
 

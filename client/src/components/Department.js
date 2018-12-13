@@ -81,10 +81,15 @@ class Department extends React.Component {
           <Card.Content extra>${p.price}</Card.Content>
         </Card.Content>
         <Card.Content extra>
-          <div className="ui two buttons">
+          <div className="ui three buttons">
+          {/* //put a link to here (link to the route I created)  */}
+          {/* //Different from spencer's because we don't have a separate itemCard */}
+          {/* //add the third button here to go to show page */}
+          <Link to={`/departments/{dId}`}>
             <Button basic color="blue">
               Edit
            </Button>
+           </Link>
             <Button onClick={() => this.removeItem(p.id)}>
               Delete
             </Button>
