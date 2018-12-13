@@ -93,6 +93,9 @@ class Department extends React.Component {
             <Button onClick={() => this.removeItem(p.id)}>
               Delete
             </Button>
+            <Button>
+              Show
+            </Button>
           </div>
         </Card.Content>
 

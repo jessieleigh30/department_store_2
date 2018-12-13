@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios';
-import { Card, Button } from "semantic-ui-react";
+import { Card, Button, Grid } from "semantic-ui-react";
 import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
 
 class Item extends React.Component {
