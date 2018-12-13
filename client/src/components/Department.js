@@ -119,6 +119,12 @@ class Department extends React.Component {
     return (
       <div>
         <HeaderText large>{name}</HeaderText>
+        <Link to={`/departments/${id}/items/new`}>
+        <Button icon color="gray"> Add Item
+        </Button>
+        <br/>
+        <br/>
+        </Link>
         <Card.Group itemsPerRow={3}>
           {this.renderItems()}
         </Card.Group>
@@ -131,8 +137,7 @@ class Department extends React.Component {
         <Link to={`/departments/${id}/items`}>
         </Link>
       </div>
-      //this is where you can renderItems so put that in here
-      //need buttons for add and edit 
+      
     )
   }
 }

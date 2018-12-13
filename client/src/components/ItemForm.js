@@ -10,14 +10,17 @@ class ItemForm extends React.Component {
     this.setState ({ [name]: value, });
   }
 
-// add handleSubmit
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const { id } = this.props.match.params;
+    axios.post(`api/departments/${id}/items`, {...this.state})
+    .then( res => {
+      this.props.history.push(`/departments/${id}`)
+    })
+  };
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const
-  // }
 
-  
+
 
   render (){
     const { name, description, price } = this.state
@@ -52,7 +55,7 @@ class ItemForm extends React.Component {
           />
          
         </Form.Group>
-
+        <Form.Button>Submit</Form.Button>
         </Form>
       </div>
     )
