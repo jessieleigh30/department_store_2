@@ -3,19 +3,21 @@ import axios from "axios";
 import { Form, } from "semantic-ui-react";
 
 class ItemForm extends React.Component {
-  state = {name: "", description: "", price: ""};
+  state = {name: "", description: "", price: "",};
 
 
-  //add a componentDidMount to check the id//
-  //need to fix this
+ 
 
-  // componentDidMount() {
-  //   const {id, itemId} = this.props.match.params;
-  //   if (itemId)
-  //     axios.get(`/api/departments/${id}/items/${itemId}`)
-  //       .then( res => {
-  //         this.setState({...res.data, }))
-  // };
+  componentDidMount() {
+    const {id, itemId} = this.props.match.params;
+    if (itemId)
+    
+      axios.get(`/api/departments/${id}/items/${itemId}`)
+        .then( res => { 
+          const {name, description, price} = res.data
+          this.setState({name, description, price })
+        })
+  }
 
   handleChange = (e) => {
     const { name, value, } = e.target;
@@ -30,14 +32,13 @@ class ItemForm extends React.Component {
     //this is the two lines of code above but combined into one
     const { match: {params: {id, itemId }}, history: {push} } = this.props;
     if (itemId) {
-      axios.put(`api/departments/${id}/items/${itemId}`, {...this.state})
+      axios.put(`/api/departments/${id}/items/${itemId}`, {...this.state})
         .then( res => push (`/departments/${id}`))
     }
     else {
-    axios.post(`api/departments/${id}/items`, {...this.state})
-    .then( res => {
-      this.push(`/departments/${id}`)
-    })
+    axios.post(`/api/departments/${id}/items`, {...this.state})
+    .then( res => push(`/departments/${id}`)
+    )
   }
   };
 
@@ -45,8 +46,8 @@ class ItemForm extends React.Component {
 
 
   render (){
-    const { name, description, price } = this.state
-    const {id, itemId} = this.props.match.params;
+    const { name, description, price } = this.state;
+    const { itemId} = this.props.match.params;
 
    return (
       <div>

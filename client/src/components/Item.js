@@ -1,46 +1,73 @@
 import React from "react";
 import axios from 'axios';
-import { Card, Button, Grid } from "semantic-ui-react";
+import { Card, Button, Grid, Segment, Rating } from "semantic-ui-react";
 import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
 
 class Item extends React.Component {
   state = { item: {}, reviews: [] };
 
 
-  componentDidMount () {
-    axios.get(`api/${this.props.match.url}`)
-      .then( res => this.setState({...res.data, }))
-    }
+  componentDidMount() {
+    const { itemId, id } = this.props.match.params;
+    axios.get(`/api/departments/${id}/items/${itemId}`)
+      .then(res => this.setState({ item: res.data, }))
+    axios.get(`/api/items/${itemId}/reviews`)
+      .then(res => this.setState({ reviews: res.data, }))
+     }
 
-  
-  render() {
-    const { name, description, price } = this.state
-
-      return (
-      <div>
-    <Grid columns={2}>
-    <Grid.Row>
-      <Grid.Column>
-      <Card>
+  showReviews = () => {
+    return this.state.reviews.map( r => (
+      <Card fluid>
       <Card.Content>
-        <Card.Header>
-          <HeaderTwo>{name}</HeaderTwo>
-        </Card.Header>
+        <Rating defaultRating={r.rating} maxRating={5} disabled icon="star" size="small"/>
         <br />
-        <Card.Description>{description}</Card.Description>
         <br />
-        <Card.Content extra>${price}</Card.Content>
+        <Card.Header>{ r.title }</Card.Header>
+        <Card.Meta>{ r.author }</Card.Meta>
+        <Card.Description>
+          { r.body }
+        </Card.Description>
       </Card.Content>
-      </Card>
+    </Card>
+    ))
+  }
+
+  render() {
+    const { name, description, price } = this.state.item
       
-      </Grid.Column>
-      </Grid.Row>
-      </Grid>
-    </div>
+    return (
+      <div>
+        <br/>
+        <Grid columns={2}>
+          <Grid.Row>
+            <Grid.Column>
+              <Card>
+                <Card.Content>
+                  <Card.Header>
+                    <HeaderTwo>{name}</HeaderTwo>
+                  </Card.Header>
+                  <br />
+                  <Card.Description>{description}</Card.Description>
+                  <br />
+                  <Card.Content extra>${price}</Card.Content>
+                </Card.Content>
+              </Card>
+
+            </Grid.Column>
+            <Grid.Column>
+              <Segment textAlign="center">
+                <h1>Reviews</h1>
+                <hr />
+                { this.showReviews() }
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
     )
 
 
-      }  
+  }
 
 };
 

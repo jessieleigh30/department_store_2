@@ -1,17 +1,17 @@
 class Api::ItemsController < ApplicationController
-  before_action :set_item, only: [:update, :destroy]
-  before_action :set_department, only: [:index, :show, :create]
+  before_action :set_item, only: [:update, :destroy, :show]
+  before_action :set_department
   
   def index
-    render json: @department.items.all
+    render json: @department.items
   end
 
   def show
-    render json: @department.item #check this out
+    render json: @item #check this out
   end
 
   def create
-    item = @department.items.new(items_params)
+    item = @department.item.new(item_params)
     if item.save
       render json: item
     else
@@ -21,7 +21,7 @@ class Api::ItemsController < ApplicationController
 
   def update
       if @item.update(item_params)
-        render json:@items
+        render json:@item
       else
         render json @item.errors
       end

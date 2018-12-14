@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, } from "react-router-dom";
 import { Segment, Button, Card } from 'semantic-ui-react';
 import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
+import ItemCard from "./ItemCard"
 
 
 //work on this file, this is where you can renderItems, check Spencers
@@ -21,7 +22,7 @@ class Department extends React.Component {
     axios.get(`/api/departments/${id}`)
       .then(res => {
         this.setState({ department: res.data });
-        axios.get(`/api/departments/${id}/items`)
+    axios.get(`/api/departments/${id}/items`)
           .then(res => this.setState({ items: res.data, }))
       })
   }
@@ -67,57 +68,14 @@ class Department extends React.Component {
   //you can put them on cards here 
   //or break the cards out into the ItemCard
   renderItems = () => {
-    const { id, } = this.props.match.params;
     return this.state.items.map(p => (
-
-      <Card>
-        <Card.Content>
-          <Card.Header>
-            <HeaderTwo>{p.name}</HeaderTwo>
-          </Card.Header>
-          <br />
-          <Card.Description>{p.description}</Card.Description>
-          <br />
-          <Card.Content extra>${p.price}</Card.Content>
-        </Card.Content>
-        <Card.Content extra>
-          <div className="ui three buttons">
-          {/* //put a link to here (link to the route I created)  */}
-          {/* //Different from spencer's because we don't have a separate itemCard */}
-          {/* //add the third button here to go to show page */}
-          <Link to={`/departments/{dId}`}>
-            <Button basic color="blue">
-              Edit
-           </Button>
-           </Link>
-            <Button onClick={() => this.removeItem(p.id)}>
-              Delete
-            </Button>
-            <Button>
-              Show
-            </Button>
-          </div>
-        </Card.Content>
-
-      </Card>
+      <ItemCard key={p.id} {...p} remove={this.removeItem}/>
 
     ))
   }
 
 
 
-
-  // renderDepartments = () => {
-  //   return this.state.departments.map( p => (
-  //     //add /items to take it to the items show page here
-  //     <Link to={ `/departments/${p.id}`} key={p.id}>
-  //     <br />
-  //     <Segment>
-  //       {p.name}
-  //     </Segment>
-  //     </Link>
-  //   ));
-  // }
 
   render() {
     //this is getting what we need from state
