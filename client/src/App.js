@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { Container } from 'semantic-ui-react';
 import ItemForm from "./components/ItemForm";
 import Item from "./components/Item";
+import ReviewForm from "./components/ReviewForm"
 // import AppContainer from "./styles/AppStyles";
 
 
@@ -39,7 +40,7 @@ const App = () => (
 
 const AppContainer = styled.div`
   background: linear-gradient(to bottom right, #EDC7B7 10%, #EEE2DC );
-  height: 200vh;
+  height: 250vh;
 `;
 
 

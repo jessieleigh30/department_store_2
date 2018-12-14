@@ -6,6 +6,7 @@ import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
 const ItemCard = ({ id, name, description, price, remove, department_id }) => (
   
   <Card>
+    <Image src="https://picsum.photos/300?random" alt=""/>
   <Card.Content>
     <Card.Header>
       <HeaderTwo>{name}</HeaderTwo>

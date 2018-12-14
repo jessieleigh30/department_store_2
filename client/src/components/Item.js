@@ -52,6 +52,7 @@ class Item extends React.Component {
                   <Card.Content extra>${price}</Card.Content>
                 </Card.Content>
               </Card>
+              <Button> Add Review </Button>
 
             </Grid.Column>
             <Grid.Column>

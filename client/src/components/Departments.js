@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
-import { Segment, Button, Header, Card } from 'semantic-ui-react';
+import { Segment, Button, Image, Card } from 'semantic-ui-react';
 import styled from "styled-components";
 import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
 
@@ -32,6 +32,7 @@ class Departments extends React.Component {
       
         <Card>
           <Card.Content>
+          <Image src="https://picsum.photos/300?random" alt=""/>
             <Card.Header>
               <HeaderTwo>{p.name}</HeaderTwo>
             </Card.Header>
