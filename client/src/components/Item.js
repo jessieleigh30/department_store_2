@@ -1,10 +1,11 @@
 import React from "react";
 import axios from 'axios';
-import { Card, Button, Grid, Segment, Rating } from "semantic-ui-react";
+import { Card, Button, Grid, Segment, Rating, Image } from "semantic-ui-react";
 import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
+import ReviewForm from "./ReviewForm";
 
 class Item extends React.Component {
-  state = { item: {}, reviews: [] };
+  state = { item: {}, reviews: [], showForm: false, };
 
 
   componentDidMount() {
@@ -15,7 +16,16 @@ class Item extends React.Component {
       .then(res => this.setState({ reviews: res.data, }))
      }
 
+  toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm,  });
+  }
+
+  addReview = (review) => {
+    this.setState({ reviews: [review, ...this.state.reviews], });
+  }
+
   showReviews = () => {
+
     return this.state.reviews.map( r => (
       <Card fluid>
       <Card.Content>
@@ -32,6 +42,17 @@ class Item extends React.Component {
     ))
   }
 
+  renderReviewForm = () => {
+    const {showForm} = this.state
+    if (showForm)
+    return (
+      <ReviewForm />
+    )
+    return null;
+
+  
+  }
+
   render() {
     const { name, description, price } = this.state.item
       
@@ -42,6 +63,7 @@ class Item extends React.Component {
           <Grid.Row>
             <Grid.Column>
               <Card>
+              <Image src="https://picsum.photos/300?random" alt=""/>
                 <Card.Content>
                   <Card.Header>
                     <HeaderTwo>{name}</HeaderTwo>
@@ -52,13 +74,16 @@ class Item extends React.Component {
                   <Card.Content extra>${price}</Card.Content>
                 </Card.Content>
               </Card>
-              <Button> Add Review </Button>
 
             </Grid.Column>
             <Grid.Column>
-              <Segment textAlign="center">
+            <Button onClick={() => this.toggleForm()}>
+                Add Review 
+            </Button>
+                <Segment textAlign="center">
                 <h1>Reviews</h1>
                 <hr />
+                 { this.renderReviewForm() }
                 { this.showReviews() }
               </Segment>
             </Grid.Column>
