@@ -31,12 +31,12 @@ class Departments extends React.Component {
       
       
         <Card>
-          <Card.Content>
+       
           <Image src="https://picsum.photos/300?random" alt=""/>
             <Card.Header>
               <HeaderTwo>{p.name}</HeaderTwo>
             </Card.Header>
-          </Card.Content>
+         
           <Card.Content textAlign="center">
           <Link to={`/departments/${p.id}`} key={p.id}>
           <Button>

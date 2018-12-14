@@ -40,7 +40,7 @@ const App = () => (
 
 const AppContainer = styled.div`
   background: linear-gradient(to bottom right, #EDC7B7 10%, #EEE2DC );
-  height: 250vh;
+  height: 350vh;
 `;
 
 
