@@ -14,56 +14,73 @@ class Item extends React.Component {
       .then(res => this.setState({ item: res.data, }))
     axios.get(`/api/items/${itemId}/reviews`)
       .then(res => this.setState({ reviews: res.data, }))
-     }
+  }
 
   toggleForm = () => {
-    this.setState({ showForm: !this.state.showForm,  });
+    this.setState({ showForm: !this.state.showForm, });
   }
 
   addReview = (review) => {
     this.setState({ reviews: [review, ...this.state.reviews], });
   }
 
+  removeReview = (id) => {
+    const confirm = window.confirm("Are you sure?");
+    if (confirm)
+      axios.delete(`/api/items/${this.props.itemId}/reviews/${id}`)
+        .then( res => {
+          const reviews = this.state.reviews.filter( r => {
+            if (r.id !== id)
+              return r;
+          })
+          this.setState({ reviews, });
+        })
+  }
+
+
   showReviews = () => {
 
-    return this.state.reviews.map( r => (
+    return this.state.reviews.map(r => (
       <Card fluid>
-      <Card.Content>
-        <Rating defaultRating={r.rating} maxRating={5} disabled icon="star" size="small"/>
-        <br />
-        <br />
-        <Card.Header>{ r.title }</Card.Header>
-        <Card.Meta>{ r.author }</Card.Meta>
-        <Card.Description>
-          { r.body }
-        </Card.Description>
-      </Card.Content>
-    </Card>
+        <Card.Content>
+          <Rating defaultRating={r.rating} maxRating={5} disabled icon="star" size="small" />
+          <br />
+          <br />
+          <Card.Header>{r.title}</Card.Header>
+          <Card.Meta>{r.author}</Card.Meta>
+          <Card.Description>
+            {r.body}
+          </Card.Description>
+          <Button onClick ={()=> this.removeReview(r.id) }> Delete </Button>
+          <Button> Edit </Button>
+        </Card.Content>
+      </Card>
     ))
   }
 
   renderReviewForm = () => {
-    const {showForm} = this.state
+    const { showForm } = this.state
     if (showForm)
-    return (
-      <ReviewForm />
-    )
+      return (
+        <ReviewForm />
+      )
     return null;
 
-  
+
   }
+
 
   render() {
     const { name, description, price } = this.state.item
-      
+
     return (
       <div>
-        <br/>
+        <br />
         <Grid columns={2}>
           <Grid.Row>
             <Grid.Column>
               <Card>
-              <Image src="https://picsum.photos/300?random" alt=""/>
+                <Image src="https://picsum.photos/300?random" alt="" />
                 <Card.Content>
                   <Card.Header>
                     <HeaderTwo>{name}</HeaderTwo>
@@ -77,14 +94,16 @@ class Item extends React.Component {
 
             </Grid.Column>
             <Grid.Column>
-            <Button onClick={() => this.toggleForm()}>
-                Add Review 
-            </Button>
-                <Segment textAlign="center">
-                <h1>Reviews</h1>
-                <hr />
-                 { this.renderReviewForm() }
-                { this.showReviews() }
+              <Segment>
+                <div>
+                <h1 style={{ textAlign: "center", color: "#123C69", fontSize: "3em" }}>Reviews</h1>
+                <Button onClick={() => this.toggleForm()}>
+                Add Review
+                </Button>
+                  <hr />
+                  {this.renderReviewForm()}
+                  {this.showReviews()}
+                </div>
               </Segment>
             </Grid.Column>
           </Grid.Row>
@@ -98,3 +117,10 @@ class Item extends React.Component {
 };
 
 export default Item;
+{/* <div>
+<h1 style={{ textAlign: "center" }}>Reviews</h1>
+<Button icon color="purple" onClick={this.toggleForm}>
+  <Icon name='chess queen' />
+  Add Review
+</Button>
+</div> */}

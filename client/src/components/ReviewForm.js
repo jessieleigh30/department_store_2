@@ -3,15 +3,26 @@ import axios from "axios";
 import { Form, } from "semantic-ui-react";
 
 //need class because we need state
-//need componentDidMount
+//need componentDidMount?
 
 class ReviewForm extends React.Component {
   state = { title: "", body: "", author: "", rating: 0, };
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   axios.post(`api/item ${}/review`)
-  // }
+
+  handleChange = ({ target: { name, value } }) => {
+    this.setState({ [name]: value, });
+  }
+
+  handleRating = (e, { rating }) => {
+    this.setState({ rating, });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post(`/api/items/${this.props.itemId}/reviews`, { ...this.state, })
+      .then( res => this.props.add(res.data) )
+    this.props.toggle();  
+  }
 
   render() {
     const {title, body, author, rating}= this.state
