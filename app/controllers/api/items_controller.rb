@@ -39,7 +39,7 @@ class Api::ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-    # @item = Item.find(params[:id]) how it was previously
+    
   end
 
   def set_department

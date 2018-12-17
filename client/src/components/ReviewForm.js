@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Form, } from "semantic-ui-react";
+import { Form, Rating } from "semantic-ui-react";
 
 //need class because we need state
 //need componentDidMount?
@@ -56,7 +56,7 @@ class ReviewForm extends React.Component {
               value={author}
               onChange={this.handleChange}
               />
-              <Form.Input
+              <Rating
               name="rating"
               icon='star'
               defaultRating={1}

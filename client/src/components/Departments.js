@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, } from "react-router-dom";
 import { Segment, Button, Image, Card } from 'semantic-ui-react';
 import styled from "styled-components";
-import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
+import { HeaderText, HeaderTwo,AddButton  } from "../styles/AppStyles.js";
 
 
 
@@ -39,7 +39,7 @@ class Departments extends React.Component {
          
           <Card.Content textAlign="center">
           <Link to={`/departments/${p.id}`} key={p.id}>
-          <Button>
+          <Button color = "grey">
             View
           </Button>
           </Link>
@@ -52,16 +52,15 @@ class Departments extends React.Component {
   render() {
     return (
       <div>
-        <br />
         <HeaderText large> Departments </HeaderText>
-        <br/>
-        <br/>
+          <AddButton> Add New Department</AddButton>
+          <br/>
+          <br/>
         <Card.Group itemsPerRow={3}>
           {this.renderDepartments()}
         </Card.Group>
         < br/>
         <Link to="/departments/new">
-          <Button> Add New Department</Button>
         </Link>
       </div>
     )

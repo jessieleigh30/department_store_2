@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
 import { Segment, Button, Card } from 'semantic-ui-react';
-import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
+import { HeaderText, HeaderTwo, AddButton } from "../styles/AppStyles.js";
 import ItemCard from "./ItemCard"
 
 
@@ -86,8 +86,8 @@ class Department extends React.Component {
       <div>
         <HeaderText large>{name}</HeaderText>
         <Link to={`/departments/${id}/items/new`}>
-        <Button icon color="gray"> Add Item
-        </Button>
+        <AddButton> Add Item
+        </AddButton>
         <br/>
         <br/>
         </Link>

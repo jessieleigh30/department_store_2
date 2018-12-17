@@ -1,6 +1,6 @@
 class Api::ReviewsController < ApplicationController
   before_action :set_item
-  before_action :set_review, only: [:update, :destroy]
+  before_action :set_review, only: [:update, :destroy, :create]
 
 
   def index
@@ -31,6 +31,7 @@ class Api::ReviewsController < ApplicationController
   private
     def set_item
       @item = Item.find(params[:item_id])
+    
     end
 
     def set_review

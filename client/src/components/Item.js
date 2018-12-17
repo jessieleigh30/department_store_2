@@ -1,7 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import { Card, Button, Grid, Segment, Rating, Image } from "semantic-ui-react";
-import { HeaderText, HeaderTwo } from "../styles/AppStyles.js";
+import { HeaderText, HeaderTwo, AddButton } from "../styles/AppStyles.js";
 import ReviewForm from "./ReviewForm";
 
 class Item extends React.Component {
@@ -62,7 +62,10 @@ class Item extends React.Component {
     const { showForm } = this.state
     if (showForm)
       return (
-        <ReviewForm />
+        <ReviewForm 
+        toggle={this.toggleForm} 
+        />
+         
       )
     return null;
 
