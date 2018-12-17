@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Card, Button, Grid, Segment, Rating, Image } from "semantic-ui-react";
 import { HeaderText, HeaderTwo, AddButton } from "../styles/AppStyles.js";
 import ReviewForm from "./ReviewForm";
+import styled from 'styled-components';
 
 class Item extends React.Component {
   state = { item: {}, reviews: [], showForm: false, };
@@ -14,6 +15,8 @@ class Item extends React.Component {
       .then(res => this.setState({ item: res.data, }))
     axios.get(`/api/items/${itemId}/reviews`)
       .then(res => this.setState({ reviews: res.data, }))
+    
+  
   }
 
   toggleForm = () => {
@@ -25,9 +28,10 @@ class Item extends React.Component {
   }
 
   removeReview = (id) => {
+    const { itemId } = this.props.match.params;
     const confirm = window.confirm("Are you sure?");
     if (confirm)
-      axios.delete(`/api/items/${this.props.itemId}/reviews/${id}`)
+      axios.delete(`/api/items/${itemId}/reviews/${id}`)
         .then( res => {
           const reviews = this.state.reviews.filter( r => {
             if (r.id !== id)
@@ -41,7 +45,7 @@ class Item extends React.Component {
   showReviews = () => {
 
     return this.state.reviews.map(r => (
-      <Card fluid>
+      <Card fluid key={r.id}>
         <Card.Content>
           <Rating defaultRating={r.rating} maxRating={5} disabled icon="star" size="small" />
           <br />
@@ -59,11 +63,14 @@ class Item extends React.Component {
   }
 
   renderReviewForm = () => {
+    const { itemId } = this.props.match.params;
     const { showForm } = this.state
     if (showForm)
       return (
         <ReviewForm 
         toggle={this.toggleForm} 
+        itemId={itemId} 
+          add={this.addReview}
         />
          
       )
@@ -75,6 +82,16 @@ class Item extends React.Component {
 
   render() {
     const { name, description, price } = this.state.item
+    let averageRatingSum = 0;
+    let ratingCount = 0;
+    let averageRating = 0;
+    this.state.reviews.forEach(review => {
+      averageRatingSum = averageRatingSum + review.rating;
+      ratingCount = ratingCount + 1;
+    })
+    averageRating = averageRatingSum / ratingCount;
+    console.log(averageRating.toFixed(2));
+
 
     return (
       <div>
@@ -92,12 +109,15 @@ class Item extends React.Component {
                   <Card.Description>{description}</Card.Description>
                   <br />
                   <Card.Content extra>${price}</Card.Content>
+                  <ProductRating>
+                    Rating: {averageRating.toFixed(2)}
+                  </ProductRating>
                 </Card.Content>
               </Card>
 
             </Grid.Column>
             <Grid.Column>
-              <Segment>
+              <Segment className="review-container">
                 <div>
                 <h1 style={{ textAlign: "center", color: "#123C69", fontSize: "3em" }}>Reviews</h1>
                 <Button onClick={() => this.toggleForm()}>
@@ -113,11 +133,16 @@ class Item extends React.Component {
         </Grid>
       </div>
     )
-
-
   }
-
 };
+
+const ProductRating = styled.p`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 14px;
+  padding: 14px;
+`;
 
 export default Item;
 {/* <div>

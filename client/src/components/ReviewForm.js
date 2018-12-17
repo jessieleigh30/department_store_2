@@ -18,27 +18,31 @@ class ReviewForm extends React.Component {
   }
 
   handleSubmit = (e) => {
+    let { itemId } = this.props;
     e.preventDefault();
-    axios.post(`/api/items/${this.props.itemId}/reviews`, { ...this.state, })
-      .then( res => this.props.add(res.data) )
-    this.props.toggle();  
+    axios.post(`/api/items/${itemId}/reviews`, { ...this.state, })
+      .then(res => {
+        this.props.add(res.data)
+      }, () => {
+        this.props.toggle();
+      })
   }
 
   render() {
-    const {title, body, author, rating}= this.state
+    const { title, body, author, rating } = this.state
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group width = "equal">
-            <Form.Input 
+          <Form.Group width="equal">
+            <Form.Input
               name="title"
               label="Title"
               placeholder="Title"
-              required 
+              required
               value={title}
               onChange={this.handleChange}
             />
-            <Form.Input 
+            <Form.Input
               name="body"
               label="Body"
               placeholder="Body"
@@ -47,25 +51,25 @@ class ReviewForm extends React.Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Group width = "equal">
-            <Form.Input 
+          <Form.Group width="equal">
+            <Form.Input
               name="author"
               label="Author"
               placeholder="Author"
               required
               value={author}
               onChange={this.handleChange}
-              />
-              <Rating
+            />
+            <Rating
               name="rating"
               icon='star'
-              defaultRating={1}
               maxRating={5}
               rating={rating}
-              onRating={this.handleRating}
+              onRate={this.handleRating}
               size="huge"
-               />
-          
+              clearable
+            />
+
           </Form.Group>
           <Form.Button> Submit </Form.Button>
         </Form>
