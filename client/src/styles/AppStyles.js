@@ -23,11 +23,11 @@ export const AddButton = styled.div `
 background-color: #123C69;
 border: none;
 color: white;
-padding: 15px 32px;
+padding: 10px 28px;
 text-align: center;
 text-decoration: none;
 display: inline-block;
-font-size: 20px;
+font-size: 16px;
 border-radius: 8px;
 transition: background 0.2s ease;
 

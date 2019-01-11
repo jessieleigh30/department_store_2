@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Link, } from "react-router-dom";
-import { Segment, Button, Card } from 'semantic-ui-react';
+import {  Button, Card } from 'semantic-ui-react';
 import { HeaderText, HeaderTwo, AddButton } from "../styles/AppStyles.js";
 import ItemCard from "./ItemCard"
 

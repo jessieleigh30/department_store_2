@@ -39,7 +39,7 @@ const App = () => (
 )
 
 const AppContainer = styled.div`
-  background: linear-gradient(to bottom right, #EDC7B7 10%, #EEE2DC, white );
+  background: #E7DDD;
   height: 100%;
   min-height: 100vh;
   padding: 100px 0;

@@ -33,9 +33,9 @@ handleSubmit = (e) => {
       })
       //if it doesn't have an id, render new
   } else {
-    axios.post("/api/departments", department)
+    axios.post(`/api/departments`, department)
       .then( res => {
-        this.props.history.push("/departments")
+        this.props.history.push(`/departments`)
       })
   }
 }

@@ -23,7 +23,7 @@ const styles = {
 };
 
 const NavButton = styled.div `
-background-color: #EEE2DC;  
+background-color: #EDC7B7;  
 border: none;
 color: white;
 padding: 15px 32px;
@@ -35,10 +35,11 @@ border-radius: 8px;
 transition: background 0.2s ease;
 
   &:hover {
-    background: #EDC7B7;
+    background: #EEE2DC;
     transition: background 0.2s ease;
   }
 `
+
 
 
 

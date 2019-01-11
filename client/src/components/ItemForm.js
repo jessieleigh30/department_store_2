@@ -19,18 +19,15 @@ class ItemForm extends React.Component {
         })
   }
 
-  handleChange = (e) => {
-    const { name, value, } = e.target;
-    this.setState ({ [name]: value, });
-  }
+
 
   //add for edit here
   handleSubmit = (e) => {
     e.preventDefault();
-    // const { id } = this.props.match.params;
-    // cons { push } = this.props.history;
+    const { id, itemId } = this.props.match.params;
+    const { push } = this.props.history;
     //this is the two lines of code above but combined into one
-    const { match: {params: {id, itemId }}, history: {push} } = this.props;
+     
     if (itemId) {
       axios.put(`/api/departments/${id}/items/${itemId}`, {...this.state})
         .then( res => push (`/departments/${id}`))
@@ -54,14 +51,7 @@ class ItemForm extends React.Component {
         <h1>{itemId ? "Edit Item" : "Add Item"}</h1>
         <Form onSubmit = {this.handleSubmit}>
         <Form.Group>
-          <Form.Input
-          name="name"
-          placeholder="Name"
-          label="Name"
-          required
-          value={name}
-          onChange={this.handleChange}
-          />
+          Ig
             <Form.Input
           name="description"
           placeholder="Description"
