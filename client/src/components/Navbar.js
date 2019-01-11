@@ -35,7 +35,7 @@ border-radius: 8px;
 transition: background 0.2s ease;
 
   &:hover {
-    background: #EEE2DC;
+    background: #dc9374;
     transition: background 0.2s ease;
   }
 `
