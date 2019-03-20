@@ -19,8 +19,8 @@ import ReviewForm from "./components/ReviewForm"
 const App = () => (
   <AppContainer>
     <Fragment>
-      <Container>
         <Navbar />
+      <Container>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/about" component={About} />
@@ -42,7 +42,7 @@ const AppContainer = styled.div`
   background: #E7DDD;
   height: 100%;
   min-height: 100vh;
-  padding: 100px 0;
+  padding: 15px 0;
 `;
 
 

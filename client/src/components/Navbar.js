@@ -5,13 +5,15 @@ import styled from 'styled-components';
 
 
 const Navbar = () => (
-  <nav style = {{paddingTop: "20px"}}>
+  <Nav>
+  
     <NavLink exact activeStyle={styles.active} to="/"><NavButton>Home</NavButton></NavLink>
     {' '}
     <NavLink exact activeStyle={styles.active} to="/about"><NavButton>About</NavButton></NavLink>
     {' '}
     <NavLink exact activeStyle={styles.active} to="/departments"><NavButton>Departments</NavButton></NavLink>
-  </nav>
+    <hr/>
+  </Nav>
 )
 
 const styles = {
@@ -23,15 +25,15 @@ const styles = {
 };
 
 const NavButton = styled.div `
-background-color: #EDC7B7;  
+// background-color: #EDC7B7;  
 border: none;
-color: white;
+color: black;
 padding: 15px 32px;
 text-align: center;
 text-decoration: none;
 display: inline-block;
 font-size: 25px;
-border-radius: 8px;
+border-radius: 2px;
 transition: background 0.2s ease;
 
   &:hover {
@@ -39,7 +41,10 @@ transition: background 0.2s ease;
     transition: background 0.2s ease;
   }
 `
+const Nav = styled.nav `
+ margin-left: 20px;
 
+`
 
 
 

@@ -90,7 +90,7 @@ class Item extends React.Component {
       ratingCount = ratingCount + 1;
     })
     averageRating = averageRatingSum / ratingCount;
-    console.log(averageRating.toFixed(2));
+    (averageRating.toFixed(2));
 
 
     return (

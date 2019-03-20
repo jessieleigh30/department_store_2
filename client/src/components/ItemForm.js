@@ -51,7 +51,6 @@ class ItemForm extends React.Component {
         <h1>{itemId ? "Edit Item" : "Add Item"}</h1>
         <Form onSubmit = {this.handleSubmit}>
         <Form.Group>
-          Ig
             <Form.Input
           name="description"
           placeholder="Description"

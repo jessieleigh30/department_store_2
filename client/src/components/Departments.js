@@ -39,9 +39,11 @@ class Departments extends React.Component {
          
           <Card.Content textAlign="center">
           <Link to={`/departments/${p.id}`} key={p.id}>
+          <Card.Content extra>
           <Button color = "grey">
             View
           </Button>
+          </Card.Content>
           </Link>
           </Card.Content>
         </Card>
