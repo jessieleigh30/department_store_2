@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 
 export const HeaderText = styled.h1`
-  color: #AC3B61 !important;
+  color: #123C69 !important;
   text-align: center;
   font-size: ${props => props.large ? '5rem' : '2rem'} !important;
   font-family: 'Roboto', sans-serif;
@@ -28,11 +28,11 @@ text-align: center;
 text-decoration: none;
 display: inline-block;
 font-size: 16px;
-border-radius: 8px;
+border-radius: 2px;
 transition: background 0.2s ease;
 
   &:hover {
-    background: #606060;
+    background: #AC3B61;
     transition: background 0.2s ease;
   }
 `

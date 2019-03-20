@@ -37,7 +37,8 @@ border-radius: 2px;
 transition: background 0.2s ease;
 
   &:hover {
-    background: #dc9374;
+    // background: #dc9374;
+    background: #AC3B61;
     transition: background 0.2s ease;
   }
 `
